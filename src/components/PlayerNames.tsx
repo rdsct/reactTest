@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { ArrowLeft, X } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { ArrowLeft, X } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const PlayerNames: React.FC = () => {
   const navigate = useNavigate();
@@ -9,10 +9,11 @@ const PlayerNames: React.FC = () => {
   const { translations } = useLanguage();
   const rounds = location.state?.rounds || 3;
   const existingNames = location.state?.playerNames || [];
-  const initialPlayerCount = location.state?.playerCount || existingNames.length || 2;
-  
+  const initialPlayerCount =
+    location.state?.playerCount || existingNames.length || 2;
+
   const [playerNames, setPlayerNames] = useState<string[]>(
-    existingNames.length ? existingNames : Array(initialPlayerCount).fill('')
+    existingNames.length ? existingNames : Array(initialPlayerCount).fill("")
   );
   const [showValidation, setShowValidation] = useState(false);
 
@@ -31,9 +32,9 @@ const PlayerNames: React.FC = () => {
 
   const handleContinue = () => {
     setShowValidation(true);
-    const validNames = playerNames.filter(name => name.trim() !== '');
+    const validNames = playerNames.filter((name) => name.trim() !== "");
     if (validNames.length === playerNames.length && validNames.length >= 2) {
-      navigate('/confirmation', { state: { playerNames: validNames, rounds } });
+      navigate("/confirmation", { state: { playerNames: validNames, rounds } });
     }
   };
 
@@ -42,7 +43,7 @@ const PlayerNames: React.FC = () => {
       <div className="flex-1 p-4 pb-24">
         <div className="w-full max-w-md mx-auto">
           <button
-            onClick={() => navigate('/new-game')}
+            onClick={() => navigate("/new-game")}
             className="bg-yellow-400 hover:bg-yellow-500 p-3 rounded-full mb-8 transition-transform hover:scale-105"
           >
             <ArrowLeft size={24} className="text-black" />
@@ -52,7 +53,7 @@ const PlayerNames: React.FC = () => {
             {translations.playerNames}
           </h1>
 
-          <div className="space-y-4">
+          <div className="space-y-8">
             {playerNames.map((name, index) => (
               <div key={index} className="relative flex items-center gap-2">
                 <div className="relative flex-1">
@@ -63,10 +64,14 @@ const PlayerNames: React.FC = () => {
                     placeholder={`${translations.player} ${index + 1}`}
                     maxLength={20}
                     className={`w-full px-6 py-3 bg-white rounded-full text-lg font-medium placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-colors
-                      ${showValidation && !name.trim() ? 'border-2 border-red-500 bg-red-50' : ''}`}
+                      ${
+                        showValidation && !name.trim()
+                          ? "border-2 border-red-500 bg-red-50"
+                          : ""
+                      }`}
                   />
                   {showValidation && !name.trim() && (
-                    <span className="absolute -bottom-5 left-4 text-red-500 text-sm">
+                    <span className="absolute -bottom-5 left-4 text-red-100 text-sm">
                       {translations.required}
                     </span>
                   )}

@@ -7,9 +7,9 @@ import Question from "./Question";
 import Odometer from "./Odometer";
 
 const Game: React.FC = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const { translations } = useLanguage();
+  const location = useLocation();
+  const { translations, language } = useLanguage();
   const playerNames = location.state?.playerNames || [];
   const totalRounds = location.state?.rounds || 3;
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
@@ -85,7 +85,7 @@ const Game: React.FC = () => {
         <div className="h-40">
           {currentNumber > 0 && (
             <Question
-              question={questions[currentNumber - 1]}
+              question={questions[language][currentNumber - 1]}
               show={showQuestion}
             />
           )}
