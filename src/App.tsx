@@ -1,12 +1,11 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { LanguageProvider } from './contexts/LanguageContext';
-import Home from './components/Home';
-import NewGame from './components/NewGame';
-import PlayerNames from './components/PlayerNames';
-import Confirmation from './components/Confirmation';
-import Game from './components/Game';
-import GameFinish from './components/GameFinish';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { LanguageProvider } from "./contexts/LanguageContext";
+import Home from "./components/Home";
+import NewGame from "./components/NewGame";
+import PlayerNames from "./components/PlayerNames";
+import Confirmation from "./components/Confirmation";
+import Game from "./components/Game";
+import GameFinish from "./components/GameFinish";
 
 function App() {
   return (
