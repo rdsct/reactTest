@@ -7,6 +7,7 @@ const NewGame: React.FC = () => {
   const navigate = useNavigate();
   const { translations } = useLanguage();
   const [playerCount, setPlayerCount] = useState(9);
+  const [rounds, setRounds] = useState(3);
 
   const decrementPlayers = () => {
     if (playerCount > 2) {
@@ -17,6 +18,18 @@ const NewGame: React.FC = () => {
   const incrementPlayers = () => {
     if (playerCount < 15) {
       setPlayerCount(prev => prev + 1);
+    }
+  };
+
+  const decrementRounds = () => {
+    if (rounds > 1) {
+      setRounds(prev => prev - 1);
+    }
+  };
+
+  const incrementRounds = () => {
+    if (rounds < 10) {
+      setRounds(prev => prev + 1);
     }
   };
 
@@ -34,31 +47,55 @@ const NewGame: React.FC = () => {
           {translations.title}
         </h1>
 
-        <div className="flex flex-col items-center gap-8">
-          <div className="text-white text-xl mb-4">{translations.players}:</div>
-          
-          <div className="flex items-center gap-4">
-            <button
-              onClick={decrementPlayers}
-              className="bg-yellow-400 hover:bg-yellow-500 p-4 rounded-full transition-transform hover:scale-105"
-            >
-              <Minus size={24} className="text-black" />
-            </button>
+        <div className="flex flex-col items-center gap-12">
+          <div className="w-full">
+            <div className="text-white text-xl mb-4 text-center">{translations.players}:</div>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={decrementPlayers}
+                className="bg-yellow-400 hover:bg-yellow-500 p-4 rounded-full transition-transform hover:scale-105"
+              >
+                <Minus size={24} className="text-black" />
+              </button>
 
-            <div className="bg-white text-black text-2xl font-bold py-2 px-8 rounded-full min-w-[100px] text-center">
-              {String(playerCount).padStart(2, '0')}
+              <div className="bg-white text-black text-2xl font-bold py-2 px-8 rounded-full min-w-[100px] text-center">
+                {String(playerCount).padStart(2, '0')}
+              </div>
+
+              <button
+                onClick={incrementPlayers}
+                className="bg-yellow-400 hover:bg-yellow-500 p-4 rounded-full transition-transform hover:scale-105"
+              >
+                <Plus size={24} className="text-black" />
+              </button>
             </div>
+          </div>
 
-            <button
-              onClick={incrementPlayers}
-              className="bg-yellow-400 hover:bg-yellow-500 p-4 rounded-full transition-transform hover:scale-105"
-            >
-              <Plus size={24} className="text-black" />
-            </button>
+          <div className="w-full">
+            <div className="text-white text-xl mb-4 text-center">{translations.rounds}:</div>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={decrementRounds}
+                className="bg-yellow-400 hover:bg-yellow-500 p-4 rounded-full transition-transform hover:scale-105"
+              >
+                <Minus size={24} className="text-black" />
+              </button>
+
+              <div className="bg-white text-black text-2xl font-bold py-2 px-8 rounded-full min-w-[100px] text-center">
+                {String(rounds).padStart(2, '0')}
+              </div>
+
+              <button
+                onClick={incrementRounds}
+                className="bg-yellow-400 hover:bg-yellow-500 p-4 rounded-full transition-transform hover:scale-105"
+              >
+                <Plus size={24} className="text-black" />
+              </button>
+            </div>
           </div>
 
           <button
-            onClick={() => navigate('/add-names', { state: { playerCount } })}
+            onClick={() => navigate('/add-names', { state: { playerCount, rounds } })}
             className="w-full py-4 bg-yellow-400 hover:bg-yellow-500 text-black font-bold rounded-full shadow-lg transition-all transform hover:scale-105"
           >
             {translations.addNames}

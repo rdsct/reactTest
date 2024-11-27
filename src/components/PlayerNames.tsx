@@ -7,6 +7,7 @@ const PlayerNames: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { translations } = useLanguage();
+  const rounds = location.state?.rounds || 3;
   const existingNames = location.state?.playerNames || [];
   const initialPlayerCount = location.state?.playerCount || existingNames.length || 2;
   
@@ -32,7 +33,7 @@ const PlayerNames: React.FC = () => {
     setShowValidation(true);
     const validNames = playerNames.filter(name => name.trim() !== '');
     if (validNames.length === playerNames.length && validNames.length >= 2) {
-      navigate('/confirmation', { state: { playerNames: validNames } });
+      navigate('/confirmation', { state: { playerNames: validNames, rounds } });
     }
   };
 

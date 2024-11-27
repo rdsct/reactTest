@@ -5,6 +5,8 @@ import Home from './components/Home';
 import NewGame from './components/NewGame';
 import PlayerNames from './components/PlayerNames';
 import Confirmation from './components/Confirmation';
+import Game from './components/Game';
+import GameFinish from './components/GameFinish';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
             <Route path="/new-game" element={<NewGame />} />
             <Route path="/add-names" element={<PlayerNames />} />
             <Route path="/confirmation" element={<Confirmation />} />
+            <Route path="/game" element={<Game />} />
+            <Route path="/game-finish" element={<GameFinish />} />
           </Routes>
         </div>
       </BrowserRouter>
